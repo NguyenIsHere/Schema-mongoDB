@@ -17,13 +17,7 @@ const studentSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  courses: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'CourseInfo',
-      required: true
-    }
-  ] // Danh sách các khóa học của sinh viên (mảng ObjectId tham chiếu đến CourseInfo)
+  courses: [courseInfoSchema] // Danh sách các khóa học mà học sinh đã tham gia
 })
 
 // Định nghĩa schema cho CourseInfo
@@ -105,13 +99,7 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  classes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Class',
-      required: true
-    }
-  ], // Danh sách lớp học trong khóa học (mảng ObjectId tham chiếu đến Class)
+  classes: [classSchema], // Danh sách lớp học trong khóa học (mảng ObjectId tham chiếu đến Class)
   teachers: [
     {
       type: [String],
